@@ -1,0 +1,22 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { NavLink, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, Users, Tags, Folder, Settings, LogOut, Bell, Search } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
+import { cn } from '../lib/utils';
+const navigation = [
+    { name: '仪表盘', href: '/', icon: LayoutDashboard },
+    { name: '客户管理', href: '/customers', icon: Users },
+    { name: '标签管理', href: '/tags', icon: Tags },
+    { name: '客户分组', href: '/groups', icon: Folder },
+];
+export default function Layout({ children }) {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+    return (_jsxs("div", { className: "min-h-screen bg-[#0D1117]", children: [_jsx("div", { className: "fixed inset-0 bg-gradient-to-br from-[#0D1117] via-[#0D1117] to-[#1a1025] pointer-events-none" }), _jsx("aside", { className: "fixed left-0 top-0 h-full w-64 glass border-r border-[#30363D] z-30", children: _jsxs("div", { className: "flex flex-col h-full", children: [_jsx("div", { className: "p-6 border-b border-[#30363D]", children: _jsxs("div", { className: "flex items-center gap-3", children: [_jsx("div", { className: "w-10 h-10 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#A855F7] flex items-center justify-center", children: _jsx("span", { className: "text-white font-bold text-lg", children: "C" }) }), _jsxs("div", { children: [_jsx("h1", { className: "text-[#F0F6FC] font-semibold", children: "CRM" }), _jsx("p", { className: "text-xs text-[#8B949E]", children: "\u5BA2\u6237\u7BA1\u7406\u7CFB\u7EDF" })] })] }) }), _jsx("nav", { className: "flex-1 p-4 space-y-1", children: navigation.map((item) => (_jsxs(NavLink, { to: item.href, className: ({ isActive }) => cn('flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200', isActive
+                                    ? 'bg-[#7C3AED]/15 text-[#A78BFA] border border-[#7C3AED]/30'
+                                    : 'text-[#8B949E] hover:text-[#F0F6FC] hover:bg-[#21262D]'), children: [_jsx(item.icon, { className: "w-5 h-5" }), item.name] }, item.name))) }), _jsxs("div", { className: "p-4 border-t border-[#30363D]", children: [_jsxs("div", { className: "flex items-center gap-3 mb-3", children: [_jsx("div", { className: "w-9 h-9 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#A855F7] flex items-center justify-center text-white text-sm font-medium", children: user?.name?.charAt(0) || 'U' }), _jsxs("div", { className: "flex-1 min-w-0", children: [_jsx("p", { className: "text-sm font-medium text-[#F0F6FC] truncate", children: user?.name }), _jsx("p", { className: "text-xs text-[#8B949E] truncate", children: user?.role === 'admin' ? '管理员' : '成员' })] })] }), _jsxs("button", { onClick: handleLogout, className: "flex items-center gap-2 w-full px-3 py-2 text-sm text-[#8B949E] hover:text-[#F0F6FC] hover:bg-[#21262D] rounded-lg transition-colors", children: [_jsx(LogOut, { className: "w-4 h-4" }), "\u9000\u51FA\u767B\u5F55"] })] })] }) }), _jsxs("main", { className: "pl-64", children: [_jsx("header", { className: "sticky top-0 z-20 glass border-b border-[#30363D]", children: _jsxs("div", { className: "flex items-center justify-between px-6 py-4", children: [_jsx("div", { className: "flex items-center gap-4 flex-1", children: _jsxs("div", { className: "relative flex-1 max-w-md", children: [_jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6E7681]" }), _jsx("input", { type: "text", placeholder: "\u641C\u7D22\u5BA2\u6237...", className: "w-full pl-10 pr-4 py-2 bg-[#0D1117] border border-[#30363D] rounded-lg text-sm text-[#F0F6FC] placeholder-[#6E7681] focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all" })] }) }), _jsxs("div", { className: "flex items-center gap-3", children: [_jsxs("button", { className: "p-2 rounded-lg text-[#8B949E] hover:text-[#F0F6FC] hover:bg-[#21262D] transition-colors relative", children: [_jsx(Bell, { className: "w-5 h-5" }), _jsx("span", { className: "absolute top-1 right-1 w-2 h-2 bg-[#7C3AED] rounded-full" })] }), _jsx("button", { className: "p-2 rounded-lg text-[#8B949E] hover:text-[#F0F6FC] hover:bg-[#21262D] transition-colors", children: _jsx(Settings, { className: "w-5 h-5" }) })] })] }) }), _jsx("div", { className: "p-6", children: children })] })] }));
+}
