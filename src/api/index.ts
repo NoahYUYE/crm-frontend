@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { User, Customer, Tag, CustomerGroup, FollowUp, DashboardData, PaginatedResponse } from '../types';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://crm-backend-liard-eight.vercel.app/api',
   headers: {
     'Content-Type': 'application/json'
   }
